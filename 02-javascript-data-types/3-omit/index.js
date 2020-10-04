@@ -5,5 +5,13 @@
  * @returns {object} - returns the new object
  */
 export const omit = (obj, ...fields) => {
-
+  let newObj = {};
+  const fieldsArr = [...fields];
+  for (const fieldsArrElement of fieldsArr) {
+    if (fieldsArrElement in obj) {
+      delete obj[`${fieldsArrElement}`];
+      newObj = Object.assign(obj);
+    }
+  }
+  return newObj;
 };
