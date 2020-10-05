@@ -9,12 +9,12 @@ export function sortStrings(arr, param = 'asc') {
   switch (param) {
     case 'desc':
       return copyArr.sort( (a, b) => {
-        return b.localeCompare(a, {},{caseFirst: 'lower'});
+        return b.localeCompare(a, 'ru',{caseFirst: 'lower'});
       });
     case 'asc':
     default:
       return copyArr.sort( (a, b) => {
-        return a.localeCompare(b, {},{caseFirst: 'upper'});
+        return a.localeCompare(b, 'ru',{caseFirst: 'upper'});
       });
   }
 }
