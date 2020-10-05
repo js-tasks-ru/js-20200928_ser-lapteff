@@ -6,18 +6,15 @@
  */
 export function sortStrings(arr, param = 'asc') {
   const copyArr = arr.slice();
-  let sorted;
   switch (param) {
     case 'desc':
-      sorted = copyArr.sort( (a, b) => {
+      return copyArr.sort( (a, b) => {
         return b.localeCompare(a, {},{caseFirst: 'lower'});
       });
-      break;
     case 'asc':
     default:
-      sorted = copyArr.sort( (a, b) => {
+      return copyArr.sort( (a, b) => {
         return a.localeCompare(b, {},{caseFirst: 'upper'});
       });
   }
-  return sorted;
 }

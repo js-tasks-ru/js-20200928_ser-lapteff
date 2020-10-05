@@ -6,8 +6,8 @@
  */
 export const pick = (obj, ...fields) => {
   let newObj = {};
-  const fieldsArr = [...fields];
-  for (const fieldsArrElement of fieldsArr) {
+  // const fieldsArr = [...fields];
+  for (const fieldsArrElement of fields) {
     if (fieldsArrElement in obj) {
       newObj[`${fieldsArrElement}`] = obj[fieldsArrElement];
     }
