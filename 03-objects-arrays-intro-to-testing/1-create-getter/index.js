@@ -5,6 +5,7 @@
  */
 export function createGetter(path) {
   const arrPath = path.split('.');
+
   return function(obj) {
     let result = obj;
     for (const arrPathElement of arrPath) {
