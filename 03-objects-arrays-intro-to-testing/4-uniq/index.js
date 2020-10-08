@@ -5,6 +5,5 @@
  */
 export function uniq(arr) {
   let uniqArr = new Set(arr);
-
   return [...uniqArr];
 }
