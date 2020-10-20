@@ -10,27 +10,53 @@ export default class SortableTable {
   }
   sort(fieldValue, orderValue = 'asc') {
     let newArr = [...this.data];
-    switch (orderValue) {
-    case 'desc':
-      newArr.sort( (a, b) => {
-        if (fieldValue !== "title") {
-          return Number(b[fieldValue]) - Number(a[fieldValue]);
-        } else {
-          return -1 * a[fieldValue].toString().localeCompare(b[fieldValue], ['ru', 'en'], {caseFirst: 'upper'});
-        }
-      });
-      return this.getTemplateBody(newArr);
-    case 'asc':
-    default:
-      newArr.sort( (a, b) => {
-        if (fieldValue !== "title") {
-          return Number(a[fieldValue]) - Number(b[fieldValue]);
-        } else {
-          return 1 * a[fieldValue].toString().localeCompare(b[fieldValue], ['ru', 'en'], {caseFirst: 'upper'});
-        }
-      });
-      return this.getTemplateBody(newArr);
-    }
+    // let curValue;
+    // let nextValue;
+    // switch (orderValue) {
+    //   case 'desc':
+    //     newArr.sort( (a, b) => {
+    //       curValue = a[fieldValue];
+    //       nextValue = b[fieldValue];
+    //       if (fieldValue !== "title") {
+    //         return Number(nextValue) - Number(curValue);
+    //       } else {
+    //         return -1 * curValue.toString().localeCompare(nextValue, ['ru', 'en'], {caseFirst: 'upper'});
+    //       }
+    //     });
+    //     return this.getTemplateBody(newArr);
+    //   case 'asc':
+    //   default:
+    //     newArr.sort( (a, b) => {
+    //       curValue = a[fieldValue];
+    //       nextValue = b[fieldValue];
+    //       if (fieldValue !== "title") {
+    //         return Number(curValue) - Number(nextValue);
+    //       } else {
+    //         return 1 * curValue.toString().localeCompare(nextValue, ['ru', 'en'], {caseFirst: 'upper'});
+    //       }
+    //     });
+    //     return this.getTemplateBody(newArr);
+    // }
+    newArr.sort( (a, b) => {
+      let curValue = a[fieldValue];
+      let nextValue = b[fieldValue];
+      switch (orderValue) {
+        case 'desc':
+          if (fieldValue !== "title") {
+            return Number(nextValue) - Number(curValue);
+          } else {
+            return -1 * curValue.toString().localeCompare(nextValue, ['ru', 'en'], {caseFirst: 'upper'});
+          }
+        case 'asc':
+        default:
+          if (fieldValue !== "title") {
+            return Number(curValue) - Number(nextValue);
+          } else {
+            return 1 * curValue.toString().localeCompare(nextValue, ['ru', 'en'], {caseFirst: 'upper'});
+          }
+      }
+    });
+    return this.getTemplateBody(newArr);
   }
 
   getTamplateHeader(headers) {
@@ -58,10 +84,10 @@ export default class SortableTable {
       const tableRows = data.map((elem) => {
         return `<a href="/products/${elem.id}" class="sortable-table__row">
             ${this.header.map(
-                item => {
-                  return (item.template) ? item.template(elem[item.id]) : `<div class="sortable-table__cell">${elem[item.id]}</div>`
-                }
-              ).join('')}
+          item => {
+            return (item.template) ? item.template(elem[item.id]) : `<div class="sortable-table__cell">${elem[item.id]}</div>`
+          }
+        ).join('')}
           </a>
         `;
       }).join('');
@@ -104,4 +130,3 @@ export default class SortableTable {
   }
 
 }
-
