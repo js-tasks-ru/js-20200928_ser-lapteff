@@ -10,33 +10,6 @@ export default class SortableTable {
   }
   sort(fieldValue, orderValue = 'asc') {
     let newArr = [...this.data];
-    // let curValue;
-    // let nextValue;
-    // switch (orderValue) {
-    //   case 'desc':
-    //     newArr.sort( (a, b) => {
-    //       curValue = a[fieldValue];
-    //       nextValue = b[fieldValue];
-    //       if (fieldValue !== "title") {
-    //         return Number(nextValue) - Number(curValue);
-    //       } else {
-    //         return -1 * curValue.toString().localeCompare(nextValue, ['ru', 'en'], {caseFirst: 'upper'});
-    //       }
-    //     });
-    //     return this.getTemplateBody(newArr);
-    //   case 'asc':
-    //   default:
-    //     newArr.sort( (a, b) => {
-    //       curValue = a[fieldValue];
-    //       nextValue = b[fieldValue];
-    //       if (fieldValue !== "title") {
-    //         return Number(curValue) - Number(nextValue);
-    //       } else {
-    //         return 1 * curValue.toString().localeCompare(nextValue, ['ru', 'en'], {caseFirst: 'upper'});
-    //       }
-    //     });
-    //     return this.getTemplateBody(newArr);
-    // }
     newArr.sort( (a, b) => {
       let curValue = a[fieldValue];
       let nextValue = b[fieldValue];
