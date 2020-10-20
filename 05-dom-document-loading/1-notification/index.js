@@ -1,6 +1,6 @@
 export default class NotificationMessage {
   element;
-  static isActive = false;
+  static isActive;
 
   constructor(msg = '', {duration = 0, type = ''} = {}) {
     this.msg = msg;
@@ -8,14 +8,14 @@ export default class NotificationMessage {
     this.type = type;
 
     if (NotificationMessage.isActive) {
-      NotificationMessage.element.remove();
+      NotificationMessage.isActive.remove();
     }
     this.getTamplate();
   }
 
   show(targetElem = document.body) {
     targetElem.append(this.getTamplate());
-    NotificationMessage.isActive = true;
+    // NotificationMessage.isActive = true;
     setTimeout(() => this.remove(), this.duration);
   }
   getTamplate() {
@@ -31,7 +31,7 @@ export default class NotificationMessage {
           </div>
         </div>
       `;
-    NotificationMessage.element = notif.firstElementChild;
+    NotificationMessage.isActive = notif.firstElementChild;
     return this.element = notif.firstElementChild;
   }
   remove () {
