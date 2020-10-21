@@ -11,11 +11,10 @@ class Tooltip {
   }
   initialize() {
     this.initEventListeners();
-
   }
   onMouseOver = event => {
     const hoverElem = event.target.closest('[data-tooltip]');
-    if(hoverElem) {
+    if (hoverElem) {
       this.render(hoverElem.dataset.tooltip);
       document.addEventListener('pointermove', this.onMouseMove);
     }
